@@ -6,7 +6,7 @@ export async function createAccountUseCase(name, email, password) {
     
     if(accountAlreadyExists) {
         console.error('Account already exists', email);
-        return;
+        throw new Error('Account already exists');
     }
 
     const createdDate = new Date().toISOString().substring(0, 10);
@@ -18,5 +18,6 @@ export async function createAccountUseCase(name, email, password) {
         createdDate
     }
 
-    saveAccount(user);
+    await saveAccount(user);
+    return user;
 }

@@ -1,14 +1,14 @@
 version: '3'
 services:
-  account: 
+  accounts: 
     image: followup/account
     build: account
     volumes:
       - ./account:/app
-  
-  account_db:
+    ports:
+      - 3000:3000
+  accounts-db:
     image: mongo
-    container_name: account_db
     ports:
       - 27017:27017
     env_file: account/.env
